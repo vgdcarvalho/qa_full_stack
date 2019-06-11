@@ -10,19 +10,17 @@ class ContaCorrente
     def saca(valor)
         if valor <= self.saldo && valor <= self.limite
             self.saldo -= valor
-        else 
-            if valor > self.limite
-                self.mensagem = 'Limite máximo por saque é de R$ 700'
-            else
-                self.mensagem = 'Saldo insuficiente para saque :('
-            end
+        elsif valor > self.limite
+            self.mensagem = "Limite máximo por saque é de R$ #{self.limite}"
+        else
+            self.mensagem = 'Saldo insuficiente para saque :('
         end
     end
 end
 
 describe ContaCorrente do
     describe 'Saque' do
-        context 'Saque em conta corrente' do
+        context 'quando faz o saque' do
             before(:all) do
                 @conta = ContaCorrente.new(1000.00)
                 @conta.saca(200.00)
@@ -32,41 +30,41 @@ describe ContaCorrente do
             end
         end
 
-        context 'Deu ruim não tenho saldo' do
+        context 'quando não tem saldo' do
             before(:all) do
                 @conta = ContaCorrente.new(0.00)
                 @conta.saca(100.00)
             end
-            it 'vejo mensagem' do
+            it 'então exibe mensagem' do
                 expect(@conta.mensagem).to eql 'Saldo insuficiente para saque :('
             end
-            it 'saldo continua o mesmo' do
+            it 'e saldo continua o mesmo' do
                 expect(@conta.saldo).to eql 0.00
             end
         end
 
-        context 'Tenho saldo mas não o suficiente' do
+        context 'quando saldo não é suficiente' do
             before(:all) do
                 @conta = ContaCorrente.new(500.00)
                 @conta.saca(501.00)
             end
-            it 'vejo mensagem' do
+            it 'então exibe mensagem' do
                 expect(@conta.mensagem).to eql 'Saldo insuficiente para saque :('
             end
-            it 'saldo continua o mesmo' do
+            it 'e saldo continua o mesmo' do
                 expect(@conta.saldo).to eql 500.00
             end
         end
 
-        context 'Limite por saque' do
+        context 'quando supera o limite de saque' do
             before(:all) do
                 @conta = ContaCorrente.new(1000.00)
-                @conta.saca(701.00)
+                @conta.saca(@conta.limite + 1.00)
             end
-            it 'vejo mensagem' do
-                expect(@conta.mensagem).to eql 'Limite máximo por saque é de R$ 700'
+            it 'então exibe mensagem' do
+                expect(@conta.mensagem).to eql "Limite máximo por saque é de R$ #{@conta.limite}"
             end
-            it 'saldo continua o mesmo' do
+            it 'e saldo continua o mesmo' do
                 expect(@conta.saldo).to eql 1000.00
             end
         end
