@@ -9,7 +9,7 @@ describe 'Forms' do
 
         expect(find('#flash').visible?).to be true
 
-        # compara textos idênticos
+        # comparar textos idênticos
         # expect(find('#flash').text).to eql 'Olá, Tony Stark. Você acessou a área logada!'
 
         # compara strings e vê se uma contém a outra
