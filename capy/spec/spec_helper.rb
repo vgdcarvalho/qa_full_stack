@@ -18,6 +18,6 @@ end
 
 Capybara.configure do |config|
   config.default_driver = :selenium_chrome
-  config.default_max_wait_time = 15
-  config.app_host = 'https://training-wheels-protocol.herokuapp.com'
+  config.default_max_wait_time = 15 # usado para setar o tempo dos 'wait' (tempo máximo para encontrar elementos)
+  config.app_host = 'https://training-wheels-protocol.herokuapp.com' # usar Capybara.app_host e concatenar com o resto da url nos testes
 end
