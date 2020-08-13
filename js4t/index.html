@@ -1,0 +1,38 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Hello JS</title>
+</head>
+
+<body>
+    <!--Csem JS-->
+    <p>Hello JS - Teste</p>
+    
+    <!--CCom JS-->
+    <p id="welcome"></p>
+
+    <!--Com JS + variável-->
+    <p id="welcome2"></p>
+
+    <!--Com JS em arquivo à parte-->
+    <p id="welcome3"></p>
+    
+    <!--Script completo no fim da página-->
+    <script type="text/javascript">
+        //Aparece no elemento com id = "welcome"
+        document.getElementById("welcome").append("Hello world! - 1")
+
+        //Só aparece no console
+        console.log("Hello world! - 2")
+
+        //Usando uma variável
+        var welcome2 = "Hello world! - 3"
+        document.getElementById("welcome2").append(welcome2)
+    </script>
+    
+    <!--Script em um arquivo externo sendo referenciado no fim da página-->
+    <script type="text/javascript" src="main.js"></script>
+</body>
+</html>
